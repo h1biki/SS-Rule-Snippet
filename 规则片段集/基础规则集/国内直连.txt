@@ -1,4 +1,4 @@
-[Rule]
+{% macro main(domestic_rule) %}
 
 ## 国内网站
 DOMAIN-SUFFIX,cn,DIRECT
@@ -129,3 +129,5 @@ DOMAIN-SUFFIX,zhihu.com,DIRECT
 DOMAIN-SUFFIX,zhimg.com,DIRECT
 DOMAIN-SUFFIX,zimuzu.tv,DIRECT
 DOMAIN-SUFFIX,zoho.com,DIRECT
+
+{% endmacro %}
