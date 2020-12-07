@@ -1,10 +1,5 @@
 # {{ downloadUrl }}
 
-{% import './snippet/direct_rules.tpl' as direct_rules %}
-{% import './snippet/youtube_rules.tpl' as youtube_rules %}
-{% import './snippet/us_rules.tpl' as us_rules %}
-{% import './snippet/blocked_rules.tpl' as blocked_rules %}
-
 external-controller: 127.0.0.1:9090
 port: 7890
 socks-port: 7891
@@ -28,44 +23,24 @@ proxies: {{ getClashNodes(nodeList) | json }}
 
 proxy-groups:
 - type: select
-  name: 🚀 Proxy
+  name: 国内直连
   proxies: {{ getClashNodeNames(nodeList) | json }}
 - type: select
-  name: 🎬 Netflix
-  proxies: {{ getClashNodeNames(nodeList, netflixFilter) | json }}
-- type: url-test
-  name: US
-  proxies: {{ getClashNodeNames(nodeList, usFilter) | json }}
-  url: {{ proxyTestUrl }}
-  interval: 1200
+  name: 国外代理
+  proxies: {{ getClashNodeNames(nodeList) | json }}
+
 - type: url-test
   name: HK
-  proxies: {{ getClashNodeNames(nodeList, hkFilter) | json }}
+  proxies: {{ getClashNodeNames(nodeList) | json }}
   url: {{ proxyTestUrl }}
   interval: 1200
-- type: select
-  name: 🍎 Apple
-  proxies:
-    - DIRECT
-    - 🚀 Proxy
-    - US
-    - HK
-- type: select
-  name: 🍎 Apple CDN
-  proxies:
-    - DIRECT
-    - 🍎 Apple
+
 
 rules:
 {{ remoteSnippets.apple.main('🚀 Proxy', '🍎 Apple', '🍎 Apple CDN', 'DIRECT', 'US') | clash }}
 {{ remoteSnippets.netflix.main('🎬 Netflix') | clash }}
 {{ remoteSnippets.hbo.main('🚀 Proxy') | clash }}
 {{ remoteSnippets.hulu.main('🚀 Proxy') | clash }}
-{{ youtube_rules.main('🚀 Proxy') | clash }}
-{{ us_rules.main('US') | clash }}
-{{ remoteSnippets.telegram.main('🚀 Proxy') | clash }}
-{{ blocked_rules.main('🚀 Proxy') | clash }}
-{{ direct_rules.main('DIRECT') | clash }}
 
 # LAN
 - DOMAIN-SUFFIX,local,DIRECT
