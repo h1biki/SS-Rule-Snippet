@@ -1,4 +1,4 @@
-[Rule]
+{% macro main(foreign_rule) %}
 
 ## 抗 DNS 污染
 DOMAIN-KEYWORD,amazon,Proxy
@@ -285,3 +285,5 @@ DOMAIN-SUFFIX,yimg.com,Proxy
 DOMAIN-SUFFIX,ying.com,Proxy
 DOMAIN-SUFFIX,yoyo.org,Proxy
 DOMAIN-SUFFIX,ytimg.com,Proxy
+
+{% endmacro %}
