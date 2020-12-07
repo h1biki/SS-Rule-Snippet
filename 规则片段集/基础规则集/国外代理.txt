@@ -1,4 +1,4 @@
-{% macro main(foreign_rule) %}
+{% macro main(intl_rule) %}
 
 ## 抗 DNS 污染
 DOMAIN-KEYWORD,amazon,Proxy
